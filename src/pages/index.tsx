@@ -2,9 +2,12 @@ import * as React from 'react';
 import Image from 'next/image';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
-import { AppButton } from '@/components/buttons/Button';
+import { AppButton, OutlineBtn } from '@/components/buttons/Button';
 import { MdTrendingFlat } from 'react-icons/md';
 import { FaAppStore, FaGooglePlay } from 'react-icons/fa';
+import { AppProcedure } from '@/components/organisms/procedure';
+import { AppDownload } from '@/components/organisms/app-downloads-section';
+import { Animate, AnimateKeyframes, AnimateGroup } from 'react-simple-animate';
 
 export default function HomePage() {
   return (
@@ -16,7 +19,7 @@ export default function HomePage() {
         <Section2 />
         <Section3 />
         <Section4 />
-        <Procedure />
+        <AppProcedure />
         <Section5 />
         <FAQ />
         <AppDownload />
@@ -26,10 +29,32 @@ export default function HomePage() {
 }
 
 function Section1() {
+  let [active, setActive] = React.useState(0);
+
+  let images = [
+    '/images/hero-eth-card.png',
+    '/images/hero-bitcoin-card.png',
+    '/images/hero-tether-card.png',
+  ];
+
+  React.useEffect(() => {
+    setInterval(() => {
+      if (active == 0) {
+        setActive(1);
+      }
+      if (active == 1) {
+        setActive(2);
+      }
+      if (active == 2) {
+        setActive(0);
+      }
+    }, 5000);
+  }, []);
+
   return (
     <div className='flex items-center py-24' style={{ minHeight: '75vh' }}>
-      <div className='container m-auto  flex md:items-center'>
-        <div className='flex flex-col-reverse md:flex-row md:items-center w-full'>
+      <div className='container px-8  flex md:items-center'>
+        <div className='flex flex-col-reverse md:flex-row md:items-center w-full justify-center'>
           <div className='space-y-4 '>
             <h1 className='text-4xl md:text-6xl '>
               We are <span className='text-green-900'>Buying</span>
@@ -46,13 +71,26 @@ function Section1() {
             </p>
           </div>
 
-          <div className='mb-10 md:mb-0 md:ml-6 hidden md:flex items-center '>
-            <Image
-              src={'/images/hero-eth-card.png'}
-              width={610}
-              height={467}
-              alt='alt'
-            />
+          <div>
+            <div className='md:ml-6 hidden md:flex items-center flex-col '>
+              <Animate
+                play
+                start={{ opacity: 0 }}
+                end={{ opacity: 1 }}
+                key={images[active]}
+              >
+                <Image
+                  src={images[active]}
+                  width={446}
+                  height={304}
+                  alt='alt'
+                />
+                <div className='flex flex-row space-x-2 justify-center w-full px-16 '>
+                  <OutlineBtn>Buy</OutlineBtn>
+                  <OutlineBtn classA='border-0'>Sell</OutlineBtn>
+                </div>
+              </Animate>
+            </div>
           </div>
         </div>
       </div>
@@ -70,20 +108,20 @@ function Section2() {
   const items: ItemT[] = [
     {
       icon: '/images/toggle.png',
-      label: '',
+      label: 'Easy',
       description:
         'We understood the assignment. Buy, Sell or Invest in three easy steps.',
       color: '#A9F4A9',
     },
     {
       icon: '/images/enter.png',
-      label: '',
+      label: 'Fast',
       description: 'No deleys and no hassles, we pay fast. ',
       color: '#FFF8D2',
     },
     {
       icon: '/images/shield.png',
-      label: '',
+      label: 'Secure',
       description:
         'We understood the assignment. Buy, Sell or Invest in three easy steps.',
       color: '#DBDBDB',
@@ -92,20 +130,20 @@ function Section2() {
 
   const Card = ({ item }: { item: ItemT }) => {
     return (
-      <div className='md:w-4/12 p-4 md:p-8 flex-1 items-center h-full'>
+      <div className='md:w-4/12 p-4 md:p-8  flex-1 items-center h-full'>
         <div
-          className='flex-col p-4 md:p-8 rounded-lg py-24'
+          className='flex-col p-4  rounded-lg py-20 space-y-4 h-full'
           style={{ backgroundColor: item.color }}
         >
           <Image
             alt='image'
             src={item.icon}
             className='block relative'
-            width={100}
-            height={100}
+            width={60}
+            height={60}
           />
-          <div>
-            <p className='font-bold'>{item.label}</p>
+          <div className='space-y-2'>
+            <h3 className='font-bold text-green-900'>{item.label}</h3>
             <p>{item.description}</p>
           </div>
         </div>
@@ -281,64 +319,6 @@ function Section5() {
   );
 }
 
-function Procedure() {
-  const items: { label: string; description: string }[] = [
-    {
-      label: 'Create Your Account',
-      description:
-        'If you are only trying to sell  to us, then you really do not need to burden yourself with inputing your private details, but if you’re trying to buy....you must stress this stress.',
-    },
-    {
-      label: 'Deposit Funds',
-      description:
-        'Choose your preferred deposit options, you would defenitely find the one that suits, so you can add some cash to your empty wallet.',
-    },
-    {
-      label: 'Buy/Sell whatever',
-      description:
-        'If Bitcion is getting you all excited and your emotions work up, then you need to avoid looking at the sweetness of Ethereum and the rest of the party.',
-    },
-  ];
-  return (
-    <div
-      className='container flex items-center justify-center flex-col md:flex-row'
-      style={{ minHeight: '0vh' }}
-    >
-      <div className='md:w-6/12'>
-        <Image
-          src={'/images/signup-flow.png'}
-          width={492}
-          height={489}
-          alt='alt'
-        />
-      </div>
-      <div className='md:w-6/12'>
-        <div className='space-y-6'>
-          {items.map((v, i) => {
-            return (
-              <div
-                className='flex p-6 bg-white rounded-xl shadow-lg space-x-4'
-                key={i}
-              >
-                <div
-                  className='rounded-full border flex items-center justify-center border-green-900'
-                  style={{ width: '70px', height: '70px' }}
-                >
-                  <h1 className='font-normal'>{i + 1}</h1>
-                </div>
-                <div className='flex-1 space-y-2'>
-                  <h2 className='font-normal text-green-900'>{v.label}</h2>
-                  <p>{v.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function FAQ() {
   const items: { label: string; description: string }[] = [
     {
@@ -384,52 +364,6 @@ function FAQ() {
             );
           })}
         </div>
-      </div>
-    </div>
-  );
-}
-
-function AppDownload() {
-  const downloadBTNStyle =
-    'space-x-4 flex border rounded-xl p-2 items-center border-2 border-green-900 justify-center ';
-  return (
-    <div
-      className='container flex  flex-col md:flex-row justify-center'
-      style={{}}
-    >
-      <div className='md:w-5/12 space-y-6'>
-        <h1 className='text-green-900'>
-          Creating an easy and functional app to trade and manage your crypto
-          portfolios is dauting work.
-        </h1>
-        <p className='text-xl'>
-          But we will do it anyway, because you need us to.
-        </p>
-
-        <div className='flex space-x-2'>
-          <div className={downloadBTNStyle}>
-            <FaAppStore size={28} />
-            <div>
-              <p className='text-xl'>App Store</p>
-              <small>Coming Soon</small>
-            </div>
-          </div>
-          <div className={downloadBTNStyle}>
-            <FaGooglePlay size={28} />
-            <div>
-              <p className='text-xl'>Google Play</p>
-              <small>Coming Soon</small>
-            </div>
-          </div>
-        </div>
-
-        <p className='md:text-center'>
-          This app is in the workshop and will be coming soon to an app store
-          near you.
-        </p>
-      </div>
-      <div className='md:w-5/12'>
-        <div className='space-y-6'></div>
       </div>
     </div>
   );

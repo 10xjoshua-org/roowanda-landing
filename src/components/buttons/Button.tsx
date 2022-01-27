@@ -29,9 +29,8 @@ export default function Button({
       {...rest}
       disabled={disabled}
       className={clsx(
-        'py-2 px-4 font-bold hover:text-primary-400',
+        'py-2 px-4 font-bold',
         // 'border border-gray-600 shadow-sm',
-        'focus:outline-none focus-visible:text-primary-400',
         {
           'bg-dark disabled:bg-gray-700 text-white disabled:hover:text-white':
             variant === 'dark',
@@ -45,15 +44,15 @@ export default function Button({
         'disabled:cursor-not-allowed',
         !disabled && 'animated-underline',
         isLoading &&
-        'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
+          'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
         className
       )}
       style={
         variant === 'primary'
           ? ({
-            '--clr-primary-400': 'white',
-            '--clr-primary-500': 'white',
-          } as React.CSSProperties)
+              '--clr-primary-400': 'white',
+              '--clr-primary-500': 'white',
+            } as React.CSSProperties)
           : undefined
       }
     >
@@ -72,5 +71,19 @@ export default function Button({
   );
 }
 
+export const OutlineBtn: React.FC<{ onClick?: () => void; classA?: string }> =
+  ({ children, onClick, classA }) => {
+    return (
+      <button
+        className={
+          'py-2 px-4 border border-green-500 w-full hover:bg-green-900 hover:text-white ' +
+          classA
+        }
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  };
 
 export const AppButton = Button;
