@@ -261,9 +261,9 @@ function Section4() {
               </p>
             }
             bottom={
-              <AppButton className='' variant='light'>
+              <OutlineBtn classA='w-min border-4 border-yellow-400'>
                 About
-              </AppButton>
+              </OutlineBtn>
             }
           />
         </div>
@@ -286,11 +286,7 @@ function Section4() {
                 NFT’s. From our hearts to yours.
               </p>
             }
-            bottom={
-              <AppButton className='' variant='light'>
-                Explore
-              </AppButton>
-            }
+            bottom={<OutlineBtn classA='w-min border-4'>Explore</OutlineBtn>}
           />
         </div>
       </div>
