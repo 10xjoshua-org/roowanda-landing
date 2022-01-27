@@ -6,6 +6,7 @@ enum ButtonVariant {
   'dark',
   'light',
   'primary',
+  'secondary',
 }
 
 type ButtonProps = {
@@ -28,29 +29,31 @@ export default function Button({
       {...rest}
       disabled={disabled}
       className={clsx(
-        'py-2 px-4 rounded font-bold hover:text-primary-400',
-        'border border-gray-600 shadow-sm',
+        'py-2 px-4 font-bold hover:text-primary-400',
+        // 'border border-gray-600 shadow-sm',
         'focus:outline-none focus-visible:text-primary-400',
         {
           'bg-dark disabled:bg-gray-700 text-white disabled:hover:text-white':
             variant === 'dark',
-          'bg-white disabled:bg-gray-200 text-dark hover:bg-gray-200 hover:text-dark focus-visible:text-dark border-gray-400 disabled:hover:text-dark':
+          'bg-white disabled:bg-gray-200 text-dark hover:text-dark focus-visible:text-dark border-gray-400 disabled:hover:text-dark':
             variant === 'light',
-          'bg-primary-400 text-black hover:bg-primary-400/90 hover:text-black border-primary-500 disabled:hover:bg-primary-400 disabled:brightness-75  focus-visible:text-dark':
+          'bg-yellow-400 text-black hover:text-black  disabled:hover:bg-primary-400 disabled:brightness-75  focus-visible:text-dark':
             variant === 'primary',
+          'bg-green-700 text-white disabled:hover:bg-primary-400 disabled:brightness-75  focus-visible:text-dark':
+            variant === 'secondary',
         },
         'disabled:cursor-not-allowed',
         !disabled && 'animated-underline',
         isLoading &&
-          'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
+        'relative text-transparent hover:!text-transparent !cursor-wait transition-none',
         className
       )}
       style={
         variant === 'primary'
           ? ({
-              '--clr-primary-400': 'white',
-              '--clr-primary-500': 'white',
-            } as React.CSSProperties)
+            '--clr-primary-400': 'white',
+            '--clr-primary-500': 'white',
+          } as React.CSSProperties)
           : undefined
       }
     >
@@ -68,3 +71,6 @@ export default function Button({
     </button>
   );
 }
+
+
+export const AppButton = Button;
