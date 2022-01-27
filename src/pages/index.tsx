@@ -183,7 +183,10 @@ function Section3() {
           { name: 'Tether', label: 'tether', rate: '500' },
         ].map((v, index) => {
           return (
-            <div key={index} className='p-5  flex justify-between items-center'>
+            <div
+              key={index}
+              className='p-5  flex justify-between items-center border-b border-green-100'
+            >
               <div className='flex md:justify-between flex-col md:flex-row  md:w-100 flex-1'>
                 <div className='flex space-x-2 items-center'>
                   <Image
