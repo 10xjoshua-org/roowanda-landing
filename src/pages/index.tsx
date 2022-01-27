@@ -92,9 +92,9 @@ function Section2() {
 
   const Card = ({ item }: { item: ItemT }) => {
     return (
-      <div className='md:w-4/12  p-8 flex-1 items-center h-full'>
+      <div className='md:w-4/12 p-4 md:p-8 flex-1 items-center h-full'>
         <div
-          className='flex-col p-8 rounded-lg py-24'
+          className='flex-col p-4 md:p-8 rounded-lg py-24'
           style={{ backgroundColor: item.color }}
         >
           <Image
@@ -192,7 +192,7 @@ function Section4() {
     return (
       <div className=''>
         <div
-          className='p-16  rounded-xl space-y-6'
+          className='p-8 md:p-16  rounded-xl space-y-6'
           style={{ backgroundColor: color }}
         >
           <h3 className='text-xl  text-green-900'>{title}</h3>
