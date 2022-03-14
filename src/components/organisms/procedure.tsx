@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 export function AppProcedure() {
-  let [active, setActive] = React.useState(0);
+  const [active, setActive] = React.useState(0);
   const items: { label: string; description: string; image: string }[] = [
     {
       label: 'Create Your Account',
@@ -43,6 +43,7 @@ export function AppProcedure() {
               <div
                 className={i == 1 ? 'md:pl-20' : 'md:pr-20'}
                 style={{}}
+                key={i}
                 onClick={() => {
                   setActive(i);
                 }}
