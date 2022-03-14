@@ -29,7 +29,7 @@ export default function HomePage() {
 }
 
 function Section1() {
-  let [active, setActive] = React.useState(0);
+  const [active, setActive] = React.useState(0);
 
   const images = [
     '/images/hero-eth-card.png',
