@@ -31,7 +31,7 @@ export default function HomePage() {
 function Section1() {
   let [active, setActive] = React.useState(0);
 
-  let images = [
+  const images = [
     '/images/hero-eth-card.png',
     '/images/hero-bitcoin-card.png',
     '/images/hero-tether-card.png',
