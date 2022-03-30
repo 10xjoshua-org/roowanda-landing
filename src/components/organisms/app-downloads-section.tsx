@@ -6,10 +6,10 @@ export function AppDownload() {
     'space-x-4 flex border rounded-xl p-2 items-center border-2 border-green-900 justify-center ';
   return (
     <div
-      className='container flex  flex-col md:flex-row justify-center'
+      className='container flex  flex-col md:flex-row items-center '
       style={{}}
     >
-      <div className='md:w-5/12 space-y-6'>
+      <div className='md:w-6/12 space-y-6'>
         <h1 className='text-green-900'>
           Creating an easy and functional app to trade and manage your crypto
           portfolios is dauting work.
@@ -19,20 +19,8 @@ export function AppDownload() {
         </p>
 
         <div className='flex space-x-2'>
-          <div className={downloadBTNStyle}>
-            <FaAppStore size={28} />
-            <div>
-              <p className='text-xl'>App Store</p>
-              <small>Coming Soon</small>
-            </div>
-          </div>
-          <div className={downloadBTNStyle}>
-            <FaGooglePlay size={28} />
-            <div>
-              <p className='text-xl'>Google Play</p>
-              <small>Coming Soon</small>
-            </div>
-          </div>
+          <img src='/images/app-store.png' />
+          <img src='/images/playstore.png' />
         </div>
 
         <p className='md:text-center'>
@@ -40,8 +28,10 @@ export function AppDownload() {
           near you.
         </p>
       </div>
-      <div className='md:w-5/12'>
-        <div className='space-y-6'></div>
+      <div className='md:w-6/12 flex justify-center'>
+        <div className=''>
+          <img src='/images/roowanda-app.svg' />
+        </div>
       </div>
     </div>
   );

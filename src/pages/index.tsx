@@ -8,6 +8,7 @@ import { FaAppStore, FaGooglePlay } from 'react-icons/fa';
 import { AppProcedure } from '@/components/organisms/procedure';
 import { AppDownload } from '@/components/organisms/app-downloads-section';
 import { Animate, AnimateKeyframes, AnimateGroup } from 'react-simple-animate';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
 
 export default function HomePage() {
   return (
@@ -48,18 +49,21 @@ function Section1() {
       if (active == 2) {
         setActive(0);
       }
-    }, 5000);
+    }, 10000);
   }, []);
 
   return (
-    <div className='flex items-center py-24' style={{ minHeight: '75vh' }}>
+    <div
+      className='flex items-center py-24 sectiton1background'
+      style={{ minHeight: '75vh' }}
+    >
       <div className='container px-8  flex md:items-center'>
-        <div className='flex flex-col-reverse md:flex-row md:items-center w-full justify-center'>
+        <div className='flex flex-col space-y-6 text-center md:text-left md:flex-row md:items-center w-full justify-center'>
           <div className='space-y-4 '>
             <h1 className='text-4xl md:text-6xl '>
-              We are <span className='text-green-900'>Buying</span>
+              We are <span className='text-gradient'>Buying</span>
               <br />
-              If you are <span className='text-green-900'>Selling</span>
+              If you are <span className='text-gradient-i'>Selling</span>
             </h1>
 
             <p className='text-xl font-normal'>
@@ -72,24 +76,12 @@ function Section1() {
           </div>
 
           <div>
-            <div className='md:ml-6 hidden md:flex items-center flex-col '>
-              <Animate
-                play
-                start={{ opacity: 0 }}
-                end={{ opacity: 1 }}
-                key={images[active]}
-              >
-                <Image
-                  src={images[active]}
-                  width={446}
-                  height={304}
-                  alt='alt'
-                />
-                <div className='flex flex-row space-x-2 justify-center w-full px-16 '>
-                  <OutlineBtn>Buy</OutlineBtn>
-                  <OutlineBtn classA='border-0'>Sell</OutlineBtn>
-                </div>
-              </Animate>
+            <div key={images[active]}>
+              <Image src={images[active]} width={446} height={304} alt='alt' />
+              <div className='flex flex-row space-x-2 justify-center w-full px-16 '>
+                <OutlineBtn>Buy</OutlineBtn>
+                <OutlineBtn classA='border-0'>Sell</OutlineBtn>
+              </div>
             </div>
           </div>
         </div>
