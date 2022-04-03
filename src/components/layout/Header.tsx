@@ -10,7 +10,7 @@ const links = [
 ];
 
 export default function Header() {
-  let [showMobileMeb, updateShowMobile] = React.useState(false);
+  const [showMobileMeb, updateShowMobile] = React.useState(false);
 
   return (
     <header className='sticky top-0 z-50 bg-white shadow'>
@@ -61,7 +61,7 @@ export default function Header() {
   );
 }
 
-function MobileMenu({ update }: { update: Function }) {
+function MobileMenu({ update }: { update: () => void }) {
   return (
     <div className='fixed w-full top-0 left-0 bg-white h-full'>
       <div>
@@ -84,8 +84,8 @@ function MobileMenu({ update }: { update: Function }) {
 
       <div style={{ flex: 1 }} className='p-12'>
         <div className='text-center'>
-          {links.map(({ href, label }) => (
-            <div className='p-4 py-3 font-bold'>
+          {links.map(({ href, label }, index) => (
+            <div className='p-4 py-3 font-bold' key={index}>
               <UnstyledLink href={href} className='hover:text-gray-600'>
                 {label}
               </UnstyledLink>
